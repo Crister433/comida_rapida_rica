@@ -3,7 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedidos Express</title>
+  <title>Mi Súper Online</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -17,502 +17,335 @@
       from { opacity: 0; transform: translateX(20px); }
       to { opacity: 1; transform: translateX(0); }
     }
-    .location-btn.active { background: #ef4444; color: white; }
-    .nav-link:hover { color: #ef4444; }
+    .location-btn.active { background: #16a34a; color: white; }
+    .nav-link:hover { color: #16a34a; }
     .btn-primary:hover { transform: scale(1.05); }
     .btn-primary { transition: all 0.2s ease; }
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-gray-50">
-  <div id="app" class="h-full w-full overflow-auto"><!-- Navbar -->
+  <div id="app" class="h-full w-full overflow-auto">
+   <!-- Navbar -->
    <nav class="bg-white shadow-lg sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3">
      <div class="flex items-center justify-between">
-      <div class="flex items-center gap-3"><!-- Logo SVG -->
-       <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-        <svg class="w-8 h-8 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+      <div class="flex items-center gap-3">
+       <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M7 4V3a1 1 0 011-1h8a1 1 0 011 1v1h4a1 1 0 011 1v2h1a1 1 0 110 2h-.333L19 20a2 2 0 01-2 2H7a2 2 0 01-2-2l-1.667-12H2a1 1 0 110-2h1V5a1 1 0 011-1h4zm2 0h6V4H9v0zM7 9h10v11H7V9z" />
         </svg>
        </div>
        <div>
-        <h1 id="nav-title" class="text-xl font-bold text-gray-800">Sabor Mexicano</h1>
-        <p id="nav-tagline" class="text-xs text-gray-500">El mejor sabor de la ciudad</p>
+        <h1 id="nav-title" class="text-xl font-bold text-gray-800">Mi Súper Online</h1>
+        <p id="nav-tagline" class="text-xs text-gray-500">Todo lo que necesitas en casa</p>
        </div>
       </div>
-      <div class="hidden md:flex items-center gap-6"><a href="#menu" class="nav-link text-gray-600 font-medium transition-colors">Menú</a> <a href="#ubicaciones" class="nav-link text-gray-600 font-medium transition-colors">Ubicaciones</a> <a href="#contacto" class="nav-link text-gray-600 font-medium transition-colors">Contacto</a>
-      </div><button id="cart-toggle" class="relative bg-red-500 text-white p-3 rounded-full shadow-lg btn-primary">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-       </svg><span id="cart-count" class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span> </button>
+      <div class="hidden md:flex items-center gap-6">
+       <a href="#menu" class="nav-link text-gray-600 font-medium transition-colors">Productos</a> <a href="#ubicaciones" class="nav-link text-gray-600 font-medium transition-colors">Ubicaciones</a> <a href="#contacto" class="nav-link text-gray-600 font-medium transition-colors">Contacto</a>
+      </div><button id="cart-toggle" class="relative bg-green-500 text-white p-3 rounded-full shadow-lg btn-primary">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m0 0H5.4" />
+       </svg><span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span> </button>
      </div>
     </div>
    </nav><!-- Hero Section -->
-   <section class="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white py-16">
+   <section class="bg-gradient-to-r from-green-600 via-green-500 to-emerald-500 text-white py-16">
     <div class="max-w-7xl mx-auto px-4 text-center">
-     <h2 class="text-4xl md:text-5xl font-extrabold mb-4">¡Haz tu pedido ahora!</h2>
-     <p class="text-xl opacity-90 mb-8">Comida deliciosa directo a tu puerta</p><a href="#menu" class="inline-block bg-white text-red-600 font-bold px-8 py-3 rounded-full shadow-xl btn-primary"> Ver Menú 🍽️ </a>
+     <h2 class="text-4xl md:text-5xl font-extrabold mb-4">¡Compra desde casa!</h2>
+     <p class="text-xl opacity-90 mb-8">Todo lo que necesitas con envío rápido</p><a href="#menu" class="inline-block bg-white text-green-600 font-bold px-8 py-3 rounded-full shadow-xl btn-primary">Ver Productos 🛒</a>
     </div>
-   </section><!-- Menu Section -->
+   </section><!-- Categories Section -->
+   <section class="py-8 bg-white border-b">
+    <div class="max-w-7xl mx-auto px-4">
+     <div class="flex gap-2 overflow-x-auto pb-2">
+      <button class="category-btn active flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-green-500 text-white">Todos</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Frutas 🍎</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Verduras 🥬</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Lácteos 🥛</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Bebidas 🥤</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Snacks 🍪</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Limpieza 🧹</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Congelados ❄️</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Carnes 🥩</button> <button class="category-btn flex-shrink-0 px-4 py-2 rounded-full font-semibold bg-gray-200 text-gray-700">Panadería 🍞</button>
+     </div>
+    </div>
+   </section><!-- Products Section -->
    <section id="menu" class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4">
      <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-800 mb-2">Nuestro Menú</h2>
-      <p class="text-gray-500">Selecciona tus platillos favoritos</p>
-     </div><!-- Category Tabs -->
-     <div class="flex flex-wrap justify-center gap-3 mb-10"><button class="category-btn active bg-red-500 text-white px-6 py-2 rounded-full font-medium transition-all" data-category="all">Todos</button> <button class="category-btn bg-white text-gray-600 px-6 py-2 rounded-full font-medium shadow transition-all hover:bg-red-500 hover:text-white" data-category="tacos">🌮 Tacos</button> <button class="category-btn bg-white text-gray-600 px-6 py-2 rounded-full font-medium shadow transition-all hover:bg-red-500 hover:text-white" data-category="burritos">🌯 Burritos</button> <button class="category-btn bg-white text-gray-600 px-6 py-2 rounded-full font-medium shadow transition-all hover:bg-red-500 hover:text-white" data-category="bebidas">🥤 Bebidas</button> <button class="category-btn bg-white text-gray-600 px-6 py-2 rounded-full font-medium shadow transition-all hover:bg-red-500 hover:text-white" data-category="postres">🍮 Postres</button>
-     </div><!-- Menu Grid -->
-     <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"><!-- Items will be rendered here -->
+      <h2 class="text-4xl font-bold text-gray-800 mb-2">Nuestros Productos</h2>
+      <p class="text-gray-600">Selecciona lo que necesitas para tu hogar</p>
+     </div>
+     <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+   </section><!-- Cart Modal -->
+   <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-96 overflow-y-auto">
+     <div class="sticky top-0 bg-green-500 text-white p-4 flex items-center justify-between">
+      <h3 class="text-2xl font-bold">Mi Carrito</h3><button id="cart-close" class="text-2xl">×</button>
+     </div>
+     <div id="cart-items" class="p-4">
+      <p class="text-center text-gray-500 py-8">Tu carrito está vacío</p>
+     </div>
+     <div id="cart-summary" class="border-t p-4 hidden">
+      <div class="flex justify-between mb-3">
+       <span class="font-semibold">Total:</span> <span id="total-price" class="text-2xl font-bold text-green-600">$0</span>
+      </div><button id="checkout-btn" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition">Realizar Pedido</button>
      </div>
     </div>
-   </section><!-- Locations Section -->
+   </div><!-- Locations Section -->
    <section id="ubicaciones" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4">
-     <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-800 mb-2">📍 Nuestras Ubicaciones</h2>
-      <p class="text-gray-500">Encuentra la sucursal más cercana</p>
-     </div>
-     <div class="grid lg:grid-cols-2 gap-8"><!-- Location Buttons -->
-      <div class="space-y-4">
-       <div class="location-btn active bg-gray-100 p-4 rounded-xl cursor-pointer transition-all hover:shadow-lg" data-location="centro">
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center"><span class="text-2xl">🏪</span>
-         </div>
-         <div>
-          <h3 class="font-bold text-gray-800">Sucursal Centro</h3>
-          <p class="text-sm text-gray-500">Av. Reforma #456, Centro Histórico</p>
-          <p class="text-xs text-green-600 font-medium">Abierto hasta 10:00 PM</p>
-         </div>
-        </div>
-       </div>
-       <div class="location-btn bg-gray-100 p-4 rounded-xl cursor-pointer transition-all hover:shadow-lg" data-location="norte">
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center"><span class="text-2xl">🏬</span>
-         </div>
-         <div>
-          <h3 class="font-bold text-gray-800">Sucursal Norte</h3>
-          <p class="text-sm text-gray-500">Plaza Norte #789, Col. Industrial</p>
-          <p class="text-xs text-green-600 font-medium">Abierto hasta 11:00 PM</p>
-         </div>
-        </div>
-       </div>
-       <div class="location-btn bg-gray-100 p-4 rounded-xl cursor-pointer transition-all hover:shadow-lg" data-location="sur">
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center"><span class="text-2xl">🏢</span>
-         </div>
-         <div>
-          <h3 class="font-bold text-gray-800">Sucursal Sur</h3>
-          <p class="text-sm text-gray-500">Av. Universidad #321, Zona Sur</p>
-          <p class="text-xs text-green-600 font-medium">Abierto hasta 9:00 PM</p>
-         </div>
-        </div>
-       </div>
-      </div><!-- Interactive Map -->
-      <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-xl relative min-h-[400px]">
-       <div id="map-container" class="w-full h-full relative"><!-- SVG Map -->
-        <svg viewbox="0 0 400 300" class="w-full h-full"><!-- Background --> <rect fill="#e8f4e8" width="400" height="300" /> <!-- Streets --> <path d="M0 150 L400 150" stroke="#d4d4d4" stroke-width="20" fill="none" /> <path d="M200 0 L200 300" stroke="#d4d4d4" stroke-width="20" fill="none" /> <path d="M50 50 L350 250" stroke="#e5e5e5" stroke-width="10" fill="none" /> <path d="M350 50 L50 250" stroke="#e5e5e5" stroke-width="10" fill="none" /> <!-- Buildings --> <rect x="30" y="30" width="60" height="50" fill="#94a3b8" rx="4" /> <rect x="310" y="30" width="60" height="50" fill="#94a3b8" rx="4" /> <rect x="30" y="220" width="60" height="50" fill="#94a3b8" rx="4" /> <rect x="310" y="220" width="60" height="50" fill="#94a3b8" rx="4" /> <rect x="130" y="200" width="40" height="30" fill="#a1a1aa" rx="3" /> <rect x="230" y="70" width="40" height="30" fill="#a1a1aa" rx="3" /> <!-- Parks --> <circle cx="100" cy="150" r="25" fill="#86efac" /> <circle cx="300" cy="150" r="25" fill="#86efac" /> <!-- Location Markers --> <g id="marker-centro" class="map-marker cursor-pointer" transform="translate(200, 120)">
-          <ellipse cx="0" cy="20" rx="10" ry="5" fill="rgba(239,68,68,0.3)" />
-          <path d="M0 -20 C-12 -20 -20 -10 -20 2 C-20 15 0 25 0 25 C0 25 20 15 20 2 C20 -10 12 -20 0 -20" fill="#ef4444" />
-          <circle cx="0" cy="-2" r="6" fill="white" />
-         </g> <g id="marker-norte" class="map-marker cursor-pointer opacity-60" transform="translate(280, 60)">
-          <ellipse cx="0" cy="20" rx="10" ry="5" fill="rgba(249,115,22,0.3)" />
-          <path d="M0 -20 C-12 -20 -20 -10 -20 2 C-20 15 0 25 0 25 C0 25 20 15 20 2 C20 -10 12 -20 0 -20" fill="#f97316" />
-          <circle cx="0" cy="-2" r="6" fill="white" />
-         </g> <g id="marker-sur" class="map-marker cursor-pointer opacity-60" transform="translate(120, 230)">
-          <ellipse cx="0" cy="20" rx="10" ry="5" fill="rgba(234,179,8,0.3)" />
-          <path d="M0 -20 C-12 -20 -20 -10 -20 2 C-20 15 0 25 0 25 C0 25 20 15 20 2 C20 -10 12 -20 0 -20" fill="#eab308" />
-          <circle cx="0" cy="-2" r="6" fill="white" />
-         </g>
-        </svg><!-- Map Info Overlay -->
-        <div id="map-info" class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur rounded-xl p-4 shadow-lg">
-         <p class="font-bold text-gray-800" id="map-location-name">Sucursal Centro</p>
-         <p class="text-sm text-gray-500" id="map-location-address">Av. Reforma #456, Centro Histórico</p>
-         <p class="text-xs text-red-500 mt-1">📞 +52 55 1234 5678</p>
-        </div>
-       </div>
+     <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Nuestras Ubicaciones</h2>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-gray-50 p-6 rounded-lg">
+       <h3 class="font-bold text-lg mb-2">Centro</h3>
+       <p class="text-gray-600">Av. Principal 123</p>
+       <p class="text-gray-600">Lunes-Domingo: 8:00-22:00</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg">
+       <h3 class="font-bold text-lg mb-2">Zona Norte</h3>
+       <p class="text-gray-600">Calle 5 456</p>
+       <p class="text-gray-600">Lunes-Domingo: 9:00-21:00</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg">
+       <h3 class="font-bold text-lg mb-2">Zona Sur</h3>
+       <p class="text-gray-600">Ruta 7 km 15</p>
+       <p class="text-gray-600">Lunes-Domingo: 9:00-20:00</p>
       </div>
      </div>
     </div>
    </section><!-- Contact Section -->
-   <section id="contacto" class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-    <div class="max-w-7xl mx-auto px-4">
-     <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold mb-2">📞 Contáctanos</h2>
-      <p class="text-gray-400">Estamos aquí para ayudarte</p>
-     </div>
-     <div class="grid md:grid-cols-2 gap-12"><!-- Contact Info -->
-      <div class="space-y-6">
-       <div class="flex items-center gap-4 p-4 bg-white/10 rounded-xl">
-        <div class="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center">
-         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-         </svg>
-        </div>
-        <div>
-         <p class="text-gray-400 text-sm">Teléfono</p>
-         <p id="contact-phone" class="font-bold text-lg">+52 55 1234 5678</p>
-        </div>
-       </div>
-       <div class="flex items-center gap-4 p-4 bg-white/10 rounded-xl">
-        <div class="w-14 h-14 bg-orange-500 rounded-full flex items-center justify-center">
-         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-         </svg>
-        </div>
-        <div>
-         <p class="text-gray-400 text-sm">Correo</p>
-         <p id="contact-email" class="font-bold text-lg">contacto@sabormexicano.com</p>
-        </div>
-       </div>
-       <div class="flex items-center gap-4 p-4 bg-white/10 rounded-xl">
-        <div class="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center">
-         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-         </svg>
-        </div>
-        <div>
-         <p class="text-gray-400 text-sm">Dirección Principal</p>
-         <p id="contact-address" class="font-bold text-lg">Av. Reforma #456, Centro</p>
-        </div>
-       </div><!-- Social Media -->
-       <div class="flex gap-4 pt-4"><a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
-         <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-         </svg></a> <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
-         <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-         </svg></a> <a href="#" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
-         <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-         </svg></a>
-       </div>
-      </div><!-- Contact Form -->
-      <div class="bg-white/10 backdrop-blur rounded-2xl p-8">
-       <h3 class="text-xl font-bold mb-6">Envíanos un mensaje</h3>
-       <form id="contact-form" class="space-y-4">
-        <div><label class="block text-sm text-gray-400 mb-2">Nombre</label> <input type="text" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors" placeholder="Tu nombre">
-        </div>
-        <div><label class="block text-sm text-gray-400 mb-2">Correo</label> <input type="email" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors" placeholder="tu@correo.com">
-        </div>
-        <div><label class="block text-sm text-gray-400 mb-2">Mensaje</label> <textarea rows="4" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors resize-none" placeholder="¿En qué podemos ayudarte?"></textarea>
-        </div><button type="submit" class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold py-3 rounded-lg btn-primary"> Enviar Mensaje 📨 </button>
-       </form>
-       <p id="form-success" class="hidden text-green-400 text-center mt-4 font-medium">¡Mensaje enviado con éxito! ✅</p>
-      </div>
-     </div>
+   <section id="contacto" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+     <h2 class="text-3xl font-bold text-gray-800 mb-8">¿Preguntas?</h2>
+     <p class="text-gray-600 mb-4">📞 +54 9 123 456 7890</p>
+     <p class="text-gray-600">📧 info@misupenonline.com</p>
     </div>
-   </section><!-- Footer -->
-   <footer class="bg-gray-900 text-gray-400 py-8 text-center">
-    <div class="flex items-center justify-center gap-3 mb-4">
-     <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center">
-      <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-      </svg>
-     </div><span id="footer-name" class="font-bold text-white">Sabor Mexicano</span>
-    </div>
-    <p class="text-sm">© 2024 Todos los derechos reservados</p>
-   </footer><!-- Cart Sidebar -->
-   <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300">
-    <div class="h-full flex flex-col">
-     <div class="p-6 bg-gradient-to-r from-red-500 to-orange-500 text-white">
-      <div class="flex items-center justify-between">
-       <h2 class="text-xl font-bold">🛒 Tu Carrito</h2><button id="close-cart" class="p-2 hover:bg-white/20 rounded-full transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg></button>
-      </div>
-     </div>
-     <div id="cart-items" class="flex-1 overflow-auto p-4 space-y-4">
-      <p id="empty-cart" class="text-gray-400 text-center py-12">Tu carrito está vacío</p>
-     </div>
-     <div class="p-6 border-t bg-gray-50">
-      <div class="flex justify-between items-center mb-4"><span class="text-gray-600">Total:</span> <span id="cart-total" class="text-2xl font-bold text-red-500">$0.00</span>
-      </div><button id="checkout-btn" class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold py-4 rounded-xl btn-primary disabled:opacity-50 disabled:cursor-not-allowed" disabled> Realizar Pedido 🚀 </button>
-     </div>
-    </div>
-   </div><!-- Cart Overlay -->
-   <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+   </section>
   </div>
   <script>
-    // Menu Items Data
-    const menuItems = [
-      { id: 1, name: 'Tacos al Pastor', category: 'tacos', price: 45, emoji: '🌮', desc: 'Con piña y cilantro' },
-      { id: 2, name: 'Tacos de Carnitas', category: 'tacos', price: 50, emoji: '🌮', desc: 'Cerdo confitado' },
-      { id: 3, name: 'Tacos de Bistec', category: 'tacos', price: 55, emoji: '🌮', desc: 'Carne asada premium' },
-      { id: 4, name: 'Burrito Supreme', category: 'burritos', price: 85, emoji: '🌯', desc: 'Extra grande con todo' },
-      { id: 5, name: 'Burrito de Pollo', category: 'burritos', price: 75, emoji: '🌯', desc: 'Pollo desmenuzado' },
-      { id: 6, name: 'Burrito Vegano', category: 'burritos', price: 70, emoji: '🌯', desc: 'Frijoles y verduras' },
-      { id: 7, name: 'Agua de Horchata', category: 'bebidas', price: 35, emoji: '🥛', desc: 'Tradicional mexicana' },
-      { id: 8, name: 'Jamaica Fresca', category: 'bebidas', price: 35, emoji: '🍹', desc: 'Flor de jamaica' },
-      { id: 9, name: 'Refresco', category: 'bebidas', price: 25, emoji: '🥤', desc: 'Variedad de sabores' },
-      { id: 10, name: 'Flan Napolitano', category: 'postres', price: 45, emoji: '🍮', desc: 'Con caramelo' },
-      { id: 11, name: 'Churros', category: 'postres', price: 40, emoji: '🥖', desc: 'Con chocolate' },
-      { id: 12, name: 'Tres Leches', category: 'postres', price: 55, emoji: '🍰', desc: 'Pastel tradicional' }
+    // Productos del supermercado
+    const productos = [
+      // Frutas
+      // Frutas
+      { id: 1, nombre: "Manzanas Red", precio: 45, categoria: "Frutas", emoji: "🍎" },
+      { id: 2, nombre: "Plátanos", precio: 30, categoria: "Frutas", emoji: "🍌" },
+      { id: 3, nombre: "Naranjas", precio: 35, categoria: "Frutas", emoji: "🍊" },
+      { id: 4, nombre: "Frutillas", precio: 120, categoria: "Frutas", emoji: "🍓" },
+      { id: 5, nombre: "Uvas", precio: 80, categoria: "Frutas", emoji: "🍇" },
+      { id: 6, nombre: "Peras", precio: 50, categoria: "Frutas", emoji: "🍐" },
+      // Verduras
+      { id: 7, nombre: "Lechuga", precio: 40, categoria: "Verduras", emoji: "🥬" },
+      { id: 8, nombre: "Tomates", precio: 50, categoria: "Verduras", emoji: "🍅" },
+      { id: 9, nombre: "Zanahorias", precio: 35, categoria: "Verduras", emoji: "🥕" },
+      { id: 10, nombre: "Papas", precio: 25, categoria: "Verduras", emoji: "🥔" },
+      { id: 11, nombre: "Cebolla", precio: 30, categoria: "Verduras", emoji: "🧅" },
+      { id: 12, nombre: "Ajo", precio: 20, categoria: "Verduras", emoji: "🧄" },
+      // Lácteos
+      { id: 13, nombre: "Leche Entera", precio: 80, categoria: "Lácteos", emoji: "🥛" },
+      { id: 14, nombre: "Queso Cheddar", precio: 150, categoria: "Lácteos", emoji: "🧀" },
+      { id: 15, nombre: "Yogur Natural", precio: 60, categoria: "Lácteos", emoji: "🍨" },
+      { id: 16, nombre: "Manteca", precio: 90, categoria: "Lácteos", emoji: "🧈" },
+      { id: 17, nombre: "Crema de Leche", precio: 100, categoria: "Lácteos", emoji: "🥄" },
+      { id: 18, nombre: "Leche Descremada", precio: 75, categoria: "Lácteos", emoji: "🥛" },
+      // Bebidas
+      { id: 19, nombre: "Gaseosa 2L", precio: 70, categoria: "Bebidas", emoji: "🥤" },
+      { id: 20, nombre: "Jugo Naranja", precio: 55, categoria: "Bebidas", emoji: "🧃" },
+      { id: 21, nombre: "Agua 6 Pack", precio: 40, categoria: "Bebidas", emoji: "💧" },
+      { id: 22, nombre: "Café", precio: 200, categoria: "Bebidas", emoji: "☕" },
+      { id: 23, nombre: "Té", precio: 80, categoria: "Bebidas", emoji: "🍵" },
+      { id: 24, nombre: "Vino Tinto", precio: 250, categoria: "Bebidas", emoji: "🍷" },
+      // Snacks
+      { id: 25, nombre: "Galletitas", precio: 45, categoria: "Snacks", emoji: "🍪" },
+      { id: 26, nombre: "Papas Fritas", precio: 50, categoria: "Snacks", emoji: "🥔" },
+      { id: 27, nombre: "Chocolates", precio: 35, categoria: "Snacks", emoji: "🍫" },
+      { id: 28, nombre: "Maní", precio: 60, categoria: "Snacks", emoji: "🥜" },
+      { id: 29, nombre: "Barras de Cereal", precio: 55, categoria: "Snacks", emoji: "🌾" },
+      { id: 30, nombre: "Nachos", precio: 65, categoria: "Snacks", emoji: "🌮" },
+      // Limpieza
+      { id: 31, nombre: "Detergente", precio: 120, categoria: "Limpieza", emoji: "🧼" },
+      { id: 32, nombre: "Papel Higiénico", precio: 100, categoria: "Limpieza", emoji: "🧻" },
+      { id: 33, nombre: "Desinfectante", precio: 90, categoria: "Limpieza", emoji: "🧹" },
+      { id: 34, nombre: "Jabón Líquido", precio: 80, categoria: "Limpieza", emoji: "🧴" },
+      { id: 35, nombre: "Esponja", precio: 25, categoria: "Limpieza", emoji: "🧽" },
+      { id: 36, nombre: "Bolsas de Basura", precio: 70, categoria: "Limpieza", emoji: "🗑️" },
+      // Congelados
+      { id: 37, nombre: "Helado Vainilla", precio: 110, categoria: "Congelados", emoji: "🍦" },
+      { id: 38, nombre: "Pizza Congelada", precio: 130, categoria: "Congelados", emoji: "🍕" },
+      { id: 39, nombre: "Pollo Congelado", precio: 180, categoria: "Congelados", emoji: "🍗" },
+      { id: 40, nombre: "Verduras Congeladas", precio: 95, categoria: "Congelados", emoji: "❄️" },
+      // Carnes
+      { id: 41, nombre: "Carne Molida", precio: 220, categoria: "Carnes", emoji: "🥩" },
+      { id: 42, nombre: "Pechuga de Pollo", precio: 160, categoria: "Carnes", emoji: "🍗" },
+      { id: 43, nombre: "Costilla de Cerdo", precio: 240, categoria: "Carnes", emoji: "🥓" },
+      { id: 44, nombre: "Filete de Pescado", precio: 280, categoria: "Carnes", emoji: "🐟" },
+      // Panadería
+      { id: 45, nombre: "Pan Integral", precio: 60, categoria: "Panadería", emoji: "🍞" },
+      { id: 46, nombre: "Medialunas", precio: 40, categoria: "Panadería", emoji: "🥐" },
+      { id: 47, nombre: "Biscochos", precio: 50, categoria: "Panadería", emoji: "🍪" },
+      { id: 48, nombre: "Facturas", precio: 45, categoria: "Panadería", emoji: "🎂" }
     ];
 
-    // Location Data
-    const locations = {
-      centro: { name: 'Sucursal Centro', address: 'Av. Reforma #456, Centro Histórico', marker: 'marker-centro' },
-      norte: { name: 'Sucursal Norte', address: 'Plaza Norte #789, Col. Industrial', marker: 'marker-norte' },
-      sur: { name: 'Sucursal Sur', address: 'Av. Universidad #321, Zona Sur', marker: 'marker-sur' }
-    };
+    let carrito = [];
+    let categoriaActual = "Todos";
 
-    // Cart State
-    let cart = [];
+    const menuItems = document.getElementById("menu-items");
+    const cartToggle = document.getElementById("cart-toggle");
+    const cartModal = document.getElementById("cart-modal");
+    const cartClose = document.getElementById("cart-close");
+    const cartItemsDiv = document.getElementById("cart-items");
+    const cartSummary = document.getElementById("cart-summary");
+    const cartCount = document.getElementById("cart-count");
+    const totalPrice = document.getElementById("total-price");
+    const checkoutBtn = document.getElementById("checkout-btn");
+    const categoryBtns = document.querySelectorAll(".category-btn");
 
-    // Default Config
-    const defaultConfig = {
-      restaurant_name: 'Sabor Mexicano',
-      tagline: 'El mejor sabor de la ciudad',
-      phone_number: '+52 55 1234 5678',
-      email: 'contacto@sabormexicano.com',
-      address: 'Av. Reforma #456, Centro',
-      primary_color: '#ef4444',
-      secondary_color: '#f97316',
-      background_color: '#f9fafb',
-      text_color: '#1f2937',
-      accent_color: '#111827'
-    };
-
-    // Render Menu
-    function renderMenu(category = 'all') {
-      const grid = document.getElementById('menu-grid');
-      const filtered = category === 'all' ? menuItems : menuItems.filter(item => item.category === category);
+    function renderProductos(filtro = "Todos") {
+      menuItems.innerHTML = "";
+      const productosFiltrados = filtro === "Todos" 
+        ? productos 
+        : productos.filter(p => p.categoria === filtro);
       
-      grid.innerHTML = filtered.map(item => `
-        <div class="menu-card bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div class="h-32 bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center">
-            <span class="text-6xl">${item.emoji}</span>
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold text-gray-800 mb-1">${item.name}</h3>
-            <p class="text-sm text-gray-500 mb-3">${item.desc}</p>
-            <div class="flex items-center justify-between">
-              <span class="text-xl font-bold text-red-500">$${item.price}</span>
-              <button onclick="addToCart(${item.id})" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-                + Agregar
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // Add to Cart
-    function addToCart(id) {
-      const item = menuItems.find(i => i.id === id);
-      const existing = cart.find(c => c.id === id);
-      
-      if (existing) {
-        existing.quantity++;
-      } else {
-        cart.push({ ...item, quantity: 1 });
-      }
-      
-      updateCart();
-    }
-
-    // Remove from Cart
-    function removeFromCart(id) {
-      cart = cart.filter(item => item.id !== id);
-      updateCart();
-    }
-
-    // Update Quantity
-    function updateQuantity(id, delta) {
-      const item = cart.find(c => c.id === id);
-      if (item) {
-        item.quantity += delta;
-        if (item.quantity <= 0) {
-          removeFromCart(id);
-        } else {
-          updateCart();
-        }
-      }
-    }
-
-    // Update Cart UI
-    function updateCart() {
-      const cartItems = document.getElementById('cart-items');
-      const cartCount = document.getElementById('cart-count');
-      const cartTotal = document.getElementById('cart-total');
-      const emptyCart = document.getElementById('empty-cart');
-      const checkoutBtn = document.getElementById('checkout-btn');
-      
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      
-      cartCount.textContent = totalItems;
-      cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
-      checkoutBtn.disabled = cart.length === 0;
-      
-      if (cart.length === 0) {
-        emptyCart.classList.remove('hidden');
-        cartItems.innerHTML = '<p id="empty-cart" class="text-gray-400 text-center py-12">Tu carrito está vacío</p>';
-      } else {
-        cartItems.innerHTML = cart.map(item => `
-          <div class="cart-item bg-gray-50 rounded-xl p-4">
-            <div class="flex items-center gap-4">
-              <span class="text-3xl">${item.emoji}</span>
-              <div class="flex-1">
-                <h4 class="font-medium text-gray-800">${item.name}</h4>
-                <p class="text-red-500 font-bold">$${item.price}</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">-</button>
-                <span class="w-8 text-center font-medium">${item.quantity}</span>
-                <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">+</button>
-              </div>
-            </div>
-          </div>
-        `).join('');
-      }
-    }
-
-    // Toggle Cart
-    function toggleCart(show) {
-      const sidebar = document.getElementById('cart-sidebar');
-      const overlay = document.getElementById('cart-overlay');
-      
-      if (show) {
-        sidebar.classList.remove('translate-x-full');
-        overlay.classList.remove('hidden');
-      } else {
-        sidebar.classList.add('translate-x-full');
-        overlay.classList.add('hidden');
-      }
-    }
-
-    // Category Filter
-    document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.category-btn').forEach(b => {
-          b.classList.remove('active', 'bg-red-500', 'text-white');
-          b.classList.add('bg-white', 'text-gray-600');
-        });
-        btn.classList.add('active', 'bg-red-500', 'text-white');
-        btn.classList.remove('bg-white', 'text-gray-600');
-        renderMenu(btn.dataset.category);
-      });
-    });
-
-    // Location Selection
-    function selectLocation(locationKey) {
-      const location = locations[locationKey];
-      
-      document.querySelectorAll('.location-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      document.querySelector(`[data-location="${locationKey}"]`).classList.add('active');
-      
-      document.querySelectorAll('.map-marker').forEach(marker => {
-        marker.style.opacity = '0.6';
-      });
-      document.getElementById(location.marker).style.opacity = '1';
-      
-      document.getElementById('map-location-name').textContent = location.name;
-      document.getElementById('map-location-address').textContent = location.address;
-    }
-
-    document.querySelectorAll('.location-btn').forEach(btn => {
-      btn.addEventListener('click', () => selectLocation(btn.dataset.location));
-    });
-
-    document.querySelectorAll('.map-marker').forEach(marker => {
-      marker.addEventListener('click', () => {
-        const locationKey = marker.id.replace('marker-', '');
-        selectLocation(locationKey);
-      });
-    });
-
-    // Cart Toggle Events
-    document.getElementById('cart-toggle').addEventListener('click', () => toggleCart(true));
-    document.getElementById('close-cart').addEventListener('click', () => toggleCart(false));
-    document.getElementById('cart-overlay').addEventListener('click', () => toggleCart(false));
-
-    // Contact Form
-    document.getElementById('contact-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      document.getElementById('form-success').classList.remove('hidden');
-      e.target.reset();
-      setTimeout(() => {
-        document.getElementById('form-success').classList.add('hidden');
-      }, 3000);
-    });
-
-    // Checkout
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-      if (cart.length > 0) {
-        const successDiv = document.createElement('div');
-        successDiv.className = 'fixed inset-0 bg-black/70 z-50 flex items-center justify-center';
-        successDiv.innerHTML = `
-          <div class="bg-white rounded-2xl p-8 text-center max-w-md mx-4 animate-bounce">
-            <span class="text-6xl">🎉</span>
-            <h3 class="text-2xl font-bold text-gray-800 mt-4">¡Pedido Realizado!</h3>
-            <p class="text-gray-500 mt-2">Tu pedido está siendo preparado</p>
-            <button onclick="this.parentElement.parentElement.remove(); cart = []; updateCart(); toggleCart(false);" class="mt-6 bg-red-500 text-white px-8 py-3 rounded-full font-bold">Aceptar</button>
+      productosFiltrados.forEach(producto => {
+        const card = document.createElement("div");
+        card.className = "menu-card bg-white rounded-lg shadow-md p-4 cursor-pointer";
+        card.innerHTML = `
+          <div class="text-5xl text-center mb-2">${producto.emoji}</div>
+          <h3 class="font-bold text-lg text-gray-800">${producto.nombre}</h3>
+          <p class="text-gray-600 text-sm mb-3">${producto.categoria}</p>
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-bold text-green-600">$${producto.precio}</span>
+            <button class="add-to-cart bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600" data-id="${producto.id}">+</button>
           </div>
         `;
-        document.body.appendChild(successDiv);
+        menuItems.appendChild(card);
+      });
+
+      document.querySelectorAll(".add-to-cart").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.dataset.id);
+          addToCart(id);
+        });
+      });
+    }
+
+    function addToCart(id) {
+      const producto = productos.find(p => p.id === id);
+      const item = carrito.find(c => c.id === id);
+      
+      if (item) {
+        item.cantidad++;
+      } else {
+        carrito.push({...producto, cantidad: 1});
+      }
+      
+      updateCart();
+    }
+
+    function removeFromCart(id) {
+      carrito = carrito.filter(item => item.id !== id);
+      updateCart();
+    }
+
+    function updateQuantity(id, cantidad) {
+      const item = carrito.find(c => c.id === id);
+      if (item) {
+        item.cantidad = Math.max(1, cantidad);
+        updateCart();
+      }
+    }
+
+    function updateCart() {
+      cartCount.textContent = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+      cartItemsDiv.innerHTML = "";
+      
+      if (carrito.length === 0) {
+        cartItemsDiv.innerHTML = '<p class="text-center text-gray-500 py-8">Tu carrito está vacío</p>';
+        cartSummary.classList.add("hidden");
+      } else {
+        carrito.forEach(item => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "cart-item bg-gray-50 p-3 rounded-lg mb-3 flex items-center justify-between";
+          itemDiv.innerHTML = `
+            <div class="flex-1">
+              <p class="font-semibold">${item.emoji} ${item.nombre}</p>
+              <p class="text-sm text-gray-600">$${item.precio}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="qty-btn bg-gray-300 px-2 py-1 rounded" data-id="${item.id}" data-action="decrease">-</button>
+              <span class="w-6 text-center font-semibold">${item.cantidad}</span>
+              <button class="qty-btn bg-gray-300 px-2 py-1 rounded" data-id="${item.id}" data-action="increase">+</button>
+              <button class="remove-btn text-red-500 ml-2 font-bold" data-id="${item.id}">🗑</button>
+            </div>
+          `;
+          cartItemsDiv.appendChild(itemDiv);
+        });
+        cartSummary.classList.remove("hidden");
+        const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        totalPrice.textContent = `$${total}`;
+      }
+
+      document.querySelectorAll(".qty-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = parseInt(btn.dataset.id);
+          const item = carrito.find(c => c.id === id);
+          if (btn.dataset.action === "increase") {
+            updateQuantity(id, item.cantidad + 1);
+          } else {
+            updateQuantity(id, item.cantidad - 1);
+          }
+        });
+      });
+
+      document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          removeFromCart(parseInt(btn.dataset.id));
+        });
+      });
+    }
+
+    cartToggle.addEventListener("click", () => {
+      cartModal.classList.remove("hidden");
+    });
+
+    cartClose.addEventListener("click", () => {
+      cartModal.classList.add("hidden");
+    });
+
+    cartModal.addEventListener("click", (e) => {
+      if (e.target === cartModal) {
+        cartModal.classList.add("hidden");
       }
     });
 
-    // Element SDK Integration
-    async function onConfigChange(config) {
-      document.getElementById('nav-title').textContent = config.restaurant_name || defaultConfig.restaurant_name;
-      document.getElementById('nav-tagline').textContent = config.tagline || defaultConfig.tagline;
-      document.getElementById('footer-name').textContent = config.restaurant_name || defaultConfig.restaurant_name;
-      document.getElementById('contact-phone').textContent = config.phone_number || defaultConfig.phone_number;
-      document.getElementById('contact-email').textContent = config.email || defaultConfig.email;
-      document.getElementById('contact-address').textContent = config.address || defaultConfig.address;
-    }
+    checkoutBtn.addEventListener("click", () => {
+      if (carrito.length > 0) {
+        const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        alert(`¡Pedido realizado!\nTotal: $${total}\n\nTiempos de entrega:\n- Centro: 30-45 min\n- Zona Norte: 45-60 min\n- Zona Sur: 60-90 min`);
+        carrito = [];
+        updateCart();
+        cartModal.classList.add("hidden");
+      }
+    });
 
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
-          },
-          {
-            get: () => config.primary_color || defaultConfig.primary_color,
-            set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
-          },
-          {
-            get: () => config.secondary_color || defaultConfig.secondary_color,
-            set: (value) => { config.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
-          },
-          {
-            get: () => config.accent_color || defaultConfig.accent_color,
-            set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
-          }
-        ],
-        borderables: [],
-        fontEditable: undefined,
-        fontSizeable: undefined
-      };
-    }
-
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ['restaurant_name', config.restaurant_name || defaultConfig.restaurant_name],
-        ['tagline', config.tagline || defaultConfig.tagline],
-        ['phone_number', config.phone_number || defaultConfig.phone_number],
-        ['email', config.email || defaultConfig.email],
-        ['address', config.address || defaultConfig.address]
-      ]);
-    }
-
-    // Initialize
-    renderMenu();
-    updateCart();
-
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
+    categoryBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        categoryBtns.forEach(b => b.classList.remove("bg-green-500", "text-white"));
+        categoryBtns.forEach(b => b.classList.add("bg-gray-200", "text-gray-700"));
+        btn.classList.remove("bg-gray-200", "text-gray-700");
+        btn.classList.add("bg-green-500", "text-white");
+        
+        categoriaActual = btn.textContent.trim().split(" ")[0] === "Todos" ? "Todos" : btn.textContent.trim().split(" ").slice(0, -1).join(" ");
+        if (btn.textContent.includes("Frutas")) categoriaActual = "Frutas";
+        if (btn.textContent.includes("Verduras")) categoriaActual = "Verduras";
+        if (btn.textContent.includes("Lácteos")) categoriaActual = "Lácteos";
+        if (btn.textContent.includes("Bebidas")) categoriaActual = "Bebidas";
+        if (btn.textContent.includes("Snacks")) categoriaActual = "Snacks";
+        if (btn.textContent.includes("Limpieza")) categoriaActual = "Limpieza";
+        if (btn.textContent.includes("Congelados")) categoriaActual = "Congelados";
+        if (btn.textContent.includes("Carnes")) categoriaActual = "Carnes";
+        if (btn.textContent.includes("Panadería")) categoriaActual = "Panadería";
+        
+        renderProductos(categoriaActual);
       });
-    }
+    });
+
+    renderProductos();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9da5cdf52358b5f0',t:'MTc3MzE4MjI1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dbabab40119b502',t:'MTc3MzQwMTY2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
